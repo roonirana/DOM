@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        input,
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            max-width: 200px;
+            margin: auto;
+        }
+
+        #input {
+            width: max-content;
+            font-size: 18px;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="displays" style="display: flex; justify-content: center;">
+        <input id="input" type="number" placeholder="Enter a number">
+        <p id="operator" style="font-weight: bolder;"></p>
+    </div>
+    <div class="button-grid">
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button>
+        <button onclick="add()">+</button>
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button>
+        <button onclick="subtract()">-</button>
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button>
+        <button onclick="multiply()">x</button>
+        <button onclick="clearInput()">C</button>
+        <button onclick="appendNumber(0)">0</button>
+        <button onclick="equals()">=</button>
+        <button onclick="divide()">/</button>
+    </div>
+    <p id="result" style="display: flex; font-size: x-large; justify-content: center;">RESULT</p>
+
+    <script>
+        document.body.onload = addElement;
+        function addElement() {
+            const newDiv = document.createElement("div");
+            newDiv.style.backgroundColor = "rgb(209, 255, 240)";
+            const newh1 = document.createElement("h1");
+            const newContent = document.createTextNode("CALCULATOR");
+            newDiv.className="headingdiv";
+            newDiv.id="headingsdiv";
+            newh1.className="headings";
+            newh1.id="heading";
+            // document.getElementById("h1").style.textAlign = "center";
+            newh1.style.textAlign = "center"
+            newDiv.appendChild(newh1);
+            newh1.appendChild(newContent);
+            const nextDiv = document.getElementById("displays");
+            document.body.insertBefore(newDiv, nextDiv);
+        }
+        let currentResult = 0;
+        let currentOperator = null;
+
+        function appendNumber(number) {
+            document.getElementById("input").value += number;
+        }
+
+        function add() {
+            calculate();
+            currentOperator = '+';
+            document.getElementById("result").innerText = currentResult;
+            document.getElementById("operator").innerText = currentOperator;
+        }
+
+        function subtract() {
+            calculate();
+            currentOperator = '-';
+            document.getElementById("result").innerText = currentResult;
+            document.getElementById("operator").innerText = currentOperator;
+        }
+
+        function multiply() {
+            calculate();
+            currentOperator = 'x';
+            document.getElementById("result").innerText = currentResult;
+            document.getElementById("operator").innerText = currentOperator;
+        }
+
+        function divide() {
+            calculate();
+            currentOperator = '/';
+            document.getElementById("result").innerText = currentResult;
+            document.getElementById("operator").innerText = currentOperator;
+        }
+
+        function equals() {
+            calculate();
+            currentOperator = null;
+            document.getElementById("result").innerText = currentResult;
+        }
+
+        function calculate() {
+            let inputValue = parseFloat(document.getElementById("input").value);
+            if (currentOperator === '+') {
+                currentResult += inputValue;
+            } else if (currentOperator === '-') {
+                currentResult -= inputValue;
+            } else if (currentOperator === 'x') {
+                currentResult *= inputValue;
+            } else if (currentOperator === '/') {
+                if (inputValue !== 0) {
+                    currentResult /= inputValue;
+                } else {
+                    alert("Error: Division by zero is not allowed");
+                }
+            } else {
+                currentResult = inputValue;
+            }
+            document.getElementById("input").value = '';
+        }
+
+        function clearInput() {
+            document.getElementById("input").value = '';
+        }
+    </script>
+</body>
+
+</html>

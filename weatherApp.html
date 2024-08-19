@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+</head>
+
+<body>
+    <h1 style="display: flex; justify-content: center;">WEATHER</h1>
+    <div style="display: flex; height: 50px; margin: 0% 10%;">
+        <input id="cityname" type="text" placeholder="Enter City" style="height: 100%; width: 90%; padding-left: 20px;">
+        <button onclick="getWeather()" style="height: 54px; width: 10%; outline: none;">Search</button>
+    </div>
+    <div id="getweather" style="height: 400px; margin: 5% 10%; background-color: rgb(213, 243, 255);">
+        <p id="weather"></p>
+        <div id="icon"><img id="wicon" src="" alt="Weather icon"></div>
+    </div>
+
+    <script src="./weatherApp.js"></script>
+
+    <!-- <script>
+        // document.getElementById("heading").innerHTML = "DATA CHANGED";
+        let x = document.getElementsByTagName("h1");
+        function forchangingTags() {
+            for (let i = 0; i < x.length; i++) {    
+                x[i].innerHTML = "DATA CHANGED";
+            }
+        }
+
+        function name(params) {
+            
+        }
+    </script> -->
+    <script src="./weatherApp.js"></script>
+</body>
+
+</html>
